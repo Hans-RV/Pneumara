@@ -110,7 +110,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           }
           
           // Use a fixed width for consistent sizing
-          const buttonWidth = Math.min(buttonDiv.offsetWidth || 300, 400)
+          const buttonWidth = Math.max(220, Math.min(buttonDiv.offsetWidth || 320, 400))
           
           google.accounts.id.renderButton(buttonDiv, {
             type: "standard",
@@ -119,7 +119,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             text: "continue_with",
             shape: "pill",
             width: buttonWidth,
-            logo_alignment: "center",
+            logo_alignment: "left",
           })
 
           setLoading(false)

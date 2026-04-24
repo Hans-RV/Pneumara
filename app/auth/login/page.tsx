@@ -76,6 +76,16 @@ function LoginContent() {
     setScriptFailed(false)
   }
 
+  useEffect(() => {
+    // In client-side navigation, the Google script may already be loaded
+    // and onLoad will not fire again for this page instance.
+    // @ts-expect-error - google is loaded from script
+    if (window.google?.accounts?.id) {
+      setScriptLoaded(true)
+      setScriptFailed(false)
+    }
+  }, [])
+
   const handleScriptError = () => {
     setScriptFailed(true)
     setGoogleLoading(false)
@@ -132,7 +142,7 @@ function LoginContent() {
             <div 
               ref={buttonContainerRef}
               id="google-signin-button" 
-              className={`w-full flex justify-center transition-opacity duration-300 ${
+              className={`w-full max-w-[400px] flex justify-center transition-opacity duration-300 ${
                 buttonRendered ? 'opacity-100' : 'opacity-0'
               }`}
               style={{ minHeight: '44px' }}
