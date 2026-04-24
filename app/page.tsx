@@ -46,16 +46,16 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-gradient-to-b from-background via-background to-primary/5">
       {/* Hero Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
-        <div className="text-center space-y-6 mb-12">
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-balance">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-20">
+        <div className="text-center space-y-5 sm:space-y-6 mb-10 sm:mb-12">
+          <h1 className="text-3xl sm:text-5xl lg:text-6xl font-bold text-balance">
             Your Personal Mental Health
             <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-secondary to-accent">
               Companion
             </span>
           </h1>
-          <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
-            SOUL SYNC is an AI-powered mental health chatbot designed to provide compassionate support, mood tracking,
+          <p className="text-base sm:text-xl text-muted-foreground max-w-2xl mx-auto text-balance">
+            Pneumara is an AI-powered mental health chatbot designed to provide compassionate support, mood tracking,
             and self-care tools for your wellness journey.
           </p>
 
@@ -73,7 +73,7 @@ export default function HomePage() {
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mt-16">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 mt-10 sm:mt-16">
           {features.map((feature, index) => {
             const Icon = feature.icon
             return (
@@ -97,12 +97,12 @@ export default function HomePage() {
       </section>
 
       {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-20">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-20">
         <Card className="border-primary/20 bg-gradient-to-r from-primary/10 via-secondary/10 to-accent/10">
           <CardHeader className="text-center">
-            <CardTitle className="text-2xl sm:text-3xl">Ready to Start Your Wellness Journey?</CardTitle>
-            <CardDescription className="text-base">
-              Join thousands of users finding support and peace with SOUL SYNC
+            <CardTitle className="text-xl sm:text-3xl">Ready to Start Your Wellness Journey?</CardTitle>
+            <CardDescription className="text-sm sm:text-base">
+              Join thousands of users finding support and peace with Pneumara
             </CardDescription>
           </CardHeader>
           <CardContent className="flex flex-col sm:flex-row gap-4 justify-center">

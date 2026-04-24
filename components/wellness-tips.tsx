@@ -43,16 +43,16 @@ export function WellnessTips() {
     <div className="space-y-4">
       <div className="flex items-center gap-2 mb-4">
         <Lightbulb className="w-5 h-5 text-primary" />
-        <h2 className="text-xl font-semibold text-foreground">Wellness Tips</h2>
+        <h2 className="text-lg sm:text-xl font-semibold text-foreground">Wellness Tips</h2>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-3 sm:gap-4">
         {WELLNESS_TIPS.map((tip, index) => (
           <Card
             key={index}
             className="border-primary/10 bg-card/50 backdrop-blur hover:border-primary/30 transition-colors"
           >
-            <CardHeader>
+            <CardHeader className="pb-3">
               <CardTitle className="text-base">{tip.title}</CardTitle>
             </CardHeader>
             <CardContent>

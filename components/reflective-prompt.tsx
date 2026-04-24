@@ -40,7 +40,7 @@ export function ReflectivePrompt({ onPromptSelect }: ReflectivePromptProps) {
   if (!isVisible) return null
 
   return (
-    <Card className="border-primary/20 bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur p-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
+    <Card className="border-primary/20 bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur p-3.5 sm:p-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
       <div className="flex items-start gap-3">
         <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center flex-shrink-0">
           <Sparkles className="w-5 h-5 text-white" />
@@ -48,18 +48,23 @@ export function ReflectivePrompt({ onPromptSelect }: ReflectivePromptProps) {
         <div className="flex-1">
           <p className="text-sm font-semibold text-foreground mb-1">Reflective Moment</p>
           <p className="text-sm text-muted-foreground mb-3">{prompt}</p>
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row gap-2">
             <Button
               size="sm"
               onClick={() => {
                 onPromptSelect(prompt)
                 setIsVisible(false)
               }}
-              className="bg-primary hover:bg-primary/90 text-primary-foreground"
+              className="bg-primary hover:bg-primary/90 text-primary-foreground w-full sm:w-auto"
             >
               Reflect on this
             </Button>
-            <Button size="sm" variant="ghost" onClick={() => setIsVisible(false)} className="hover:bg-primary/10">
+            <Button
+              size="sm"
+              variant="ghost"
+              onClick={() => setIsVisible(false)}
+              className="hover:bg-primary/10 w-full sm:w-auto"
+            >
               Maybe later
             </Button>
           </div>

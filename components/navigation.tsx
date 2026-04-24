@@ -29,20 +29,20 @@ export function Navigation() {
   return (
     <nav className="sticky top-0 z-50 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
+        <div className="flex justify-between items-center h-14 sm:h-16">
           {/* Logo */}
           <Link
             href="/"
-            className="flex items-center gap-2 font-bold text-xl text-primary hover:opacity-80 transition-opacity"
+            className="flex items-center gap-2 font-bold text-lg sm:text-xl text-primary hover:opacity-80 transition-opacity"
           >
             <Image 
               src="/logoss.png" 
-              alt="SOUL SYNC Logo" 
+              alt="Pneumara Logo" 
               width={32} 
               height={32}
               className="object-contain"
             />
-            <span className="hidden sm:inline">SOUL SYNC</span>
+            <span>Pneumara</span>
           </Link>
 
           {/* Desktop Navigation */}
@@ -82,7 +82,8 @@ export function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-primary/10 text-foreground"
+            className="md:hidden p-2.5 rounded-lg hover:bg-primary/10 text-foreground"
+            aria-label="Toggle navigation menu"
           >
             {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
           </button>
@@ -90,7 +91,7 @@ export function Navigation() {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden pb-4 space-y-2 border-t border-border pt-4">
+          <div className="md:hidden pb-4 space-y-2 border-t border-border pt-4 max-h-[calc(100dvh-3.5rem)] overflow-y-auto">
             {navItems.map((item) => {
               const Icon = item.icon
               return (

@@ -11,8 +11,13 @@ const _geist = Geist({ subsets: ["latin"] })
 const _geistMono = Geist_Mono({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "SOUL SYNC - Mental Health Chatbot",
+  title: "Pneumara - Mental Health Chatbot",
   description: "Your personal AI mental health companion for wellness and self-care",
+  icons: {
+    icon: "/logoss.png",
+    shortcut: "/logoss.png",
+    apple: "/logoss.png",
+  },
 }
 
 export default function RootLayout({
@@ -23,7 +28,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`font-sans antialiased`}>
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="soul-sync-theme">
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem storageKey="pneumara-theme">
           <AuthProvider>
             <Navigation />
             {children}

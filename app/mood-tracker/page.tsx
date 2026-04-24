@@ -22,7 +22,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts"
-import { Calendar, TrendingUp, Heart, AlertCircle, Flame, Award } from "lucide-react"
+import { Calendar, TrendingUp, Heart, Flame, Award } from "lucide-react"
 
 interface MoodEntry {
   id: string
@@ -34,7 +34,7 @@ interface MoodEntry {
 
 const MOOD_LABELS = ["Terrible", "Bad", "Okay", "Good", "Great"]
 const MOOD_COLORS = ["#ef4444", "#f97316", "#eab308", "#84cc16", "#22c55e"]
-const STORAGE_KEY = "soul-sync-mood-entries"
+const STORAGE_KEY = "pneumara-mood-entries"
 
 export default function MoodTrackerPage() {
   const { user } = useAuth()
@@ -160,27 +160,27 @@ export default function MoodTrackerPage() {
 
   return (
     <AuthGuard>
-      <main className="min-h-screen bg-gradient-to-b from-background to-primary/5 py-8">
-        <div className="max-w-6xl mx-auto px-4 space-y-8">
+      <main className="min-h-[calc(100dvh-3.5rem)] sm:min-h-[calc(100dvh-4rem)] bg-gradient-to-b from-background to-primary/5 py-5 sm:py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 space-y-6 sm:space-y-8">
           {/* Header */}
           <div>
-            <h1 className="text-3xl font-bold text-primary mb-2">Mood Tracker</h1>
-            <p className="text-muted-foreground">
+            <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-2">Mood Tracker</h1>
+            <p className="text-sm sm:text-base text-muted-foreground">
               Track your emotional patterns and discover insights about your wellness
             </p>
           </div>
 
         {entries.length > 0 && (
-          <div className="grid md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Card className="border-primary/10 bg-gradient-to-br from-orange-500/10 to-red-500/10 backdrop-blur">
               <CardContent className="pt-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
-                    <Flame className="w-8 h-8 text-white" />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                    <Flame className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Current Streak</p>
-                    <p className="text-3xl font-bold text-foreground">{streak} days</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-foreground">{streak} days</p>
                     <p className="text-xs text-muted-foreground mt-1">
                       {streak > 0 ? "Keep it going!" : "Start your journey today"}
                     </p>
@@ -191,15 +191,15 @@ export default function MoodTrackerPage() {
 
             <Card className="border-primary/10 bg-gradient-to-br from-primary/10 to-secondary/10 backdrop-blur">
               <CardContent className="pt-6">
-                <div className="flex items-center gap-4">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
-                    <Award className="w-8 h-8 text-white" />
+                <div className="flex items-center gap-3 sm:gap-4">
+                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-primary to-secondary flex items-center justify-center">
+                    <Award className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
                   </div>
                   <div>
                     <p className="text-sm text-muted-foreground mb-1">Mindful Days</p>
-                    <p className="text-3xl font-bold text-foreground">{totalDays}</p>
+                    <p className="text-2xl sm:text-3xl font-bold text-foreground">{totalDays}</p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      You've spent {totalDays} mindful {totalDays === 1 ? "day" : "days"} with SOUL SYNC
+                      You've spent {totalDays} mindful {totalDays === 1 ? "day" : "days"} with Pneumara
                     </p>
                   </div>
                 </div>
@@ -211,7 +211,7 @@ export default function MoodTrackerPage() {
         <div className="grid lg:grid-cols-3 gap-6">
           {/* Add Mood Form */}
           <Card className="border-primary/10 bg-card/50 backdrop-blur lg:col-span-1">
-            <CardHeader>
+            <CardHeader className="pb-4">
               <CardTitle className="flex items-center gap-2">
                 <Heart className="w-5 h-5 text-primary" />
                 How are you feeling?
@@ -227,7 +227,7 @@ export default function MoodTrackerPage() {
 
                 <div className="space-y-3">
                   <Label className="text-foreground">Mood Level</Label>
-                  <div className="flex gap-2">
+                  <div className="grid grid-cols-5 gap-2">
                     {[1, 2, 3, 4, 5].map((score) => (
                       <button
                         key={score}
@@ -276,7 +276,7 @@ export default function MoodTrackerPage() {
 
           {/* Statistics */}
           <div className="lg:col-span-2 space-y-4">
-            <div className="grid grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
               <Card className="border-primary/10 bg-card/50 backdrop-blur">
                 <CardContent className="pt-6">
                   <div className="text-center">
@@ -322,11 +322,12 @@ export default function MoodTrackerPage() {
                 <CardDescription>Your mood over time</CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
+                <div className="h-[220px] sm:h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
                   <LineChart data={chartData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                    <XAxis dataKey="date" stroke="var(--muted-foreground)" />
-                    <YAxis domain={[1, 5]} stroke="var(--muted-foreground)" />
+                    <XAxis dataKey="date" stroke="var(--muted-foreground)" tick={{ fontSize: 12 }} minTickGap={24} />
+                    <YAxis domain={[1, 5]} stroke="var(--muted-foreground)" tick={{ fontSize: 12 }} />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: "var(--card)",
@@ -345,6 +346,7 @@ export default function MoodTrackerPage() {
                     />
                   </LineChart>
                 </ResponsiveContainer>
+                </div>
               </CardContent>
             </Card>
 
@@ -357,7 +359,8 @@ export default function MoodTrackerPage() {
                 <CardDescription>How often you feel each way</CardDescription>
               </CardHeader>
               <CardContent>
-                <ResponsiveContainer width="100%" height={300}>
+                <div className="h-[220px] sm:h-[300px]">
+                <ResponsiveContainer width="100%" height="100%">
                   <BarChart
                     data={[
                       {
@@ -383,8 +386,8 @@ export default function MoodTrackerPage() {
                     ]}
                   >
                     <CartesianGrid strokeDasharray="3 3" stroke="var(--border)" />
-                    <XAxis dataKey="name" stroke="var(--muted-foreground)" />
-                    <YAxis stroke="var(--muted-foreground)" />
+                    <XAxis dataKey="name" stroke="var(--muted-foreground)" tick={{ fontSize: 12 }} minTickGap={12} />
+                    <YAxis stroke="var(--muted-foreground)" tick={{ fontSize: 12 }} />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: "var(--card)",
@@ -396,6 +399,7 @@ export default function MoodTrackerPage() {
                     <Bar dataKey="count" fill="var(--secondary)" name="Frequency" />
                   </BarChart>
                 </ResponsiveContainer>
+                </div>
               </CardContent>
             </Card>
           </div>
@@ -413,10 +417,10 @@ export default function MoodTrackerPage() {
                 {[...entries].reverse().map((entry) => (
                   <div
                     key={entry.id}
-                    className="flex items-start gap-4 p-3 rounded-lg bg-background/50 border border-border/50"
+                    className="flex items-start gap-3 sm:gap-4 p-3 rounded-lg bg-background/50 border border-border/50"
                   >
                     <div
-                      className="w-12 h-12 rounded-lg flex items-center justify-center text-white font-bold flex-shrink-0"
+                      className="w-10 h-10 sm:w-12 sm:h-12 rounded-lg flex items-center justify-center text-white font-bold flex-shrink-0"
                       style={{ backgroundColor: MOOD_COLORS[entry.mood_score - 1] }}
                     >
                       {entry.mood_score}

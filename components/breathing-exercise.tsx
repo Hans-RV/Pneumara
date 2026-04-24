@@ -70,12 +70,12 @@ export function BreathingExercise() {
           <Wind className="w-5 h-5 text-primary" />
           Guided Breathing
         </CardTitle>
-        <CardDescription>4-4-4 breathing exercise to calm your mind</CardDescription>
+        <CardDescription className="text-sm">4-4-4 breathing exercise to calm your mind</CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
         <div className="flex flex-col items-center justify-center space-y-4">
           <div
-            className={`w-32 h-32 rounded-full bg-gradient-to-br ${currentPhaseData.color} flex items-center justify-center transition-all duration-1000 ${
+            className={`w-28 h-28 sm:w-32 sm:h-32 rounded-full bg-gradient-to-br ${currentPhaseData.color} flex items-center justify-center transition-all duration-1000 ${
               isActive ? "scale-100" : "scale-75"
             }`}
             style={{

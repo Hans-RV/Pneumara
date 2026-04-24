@@ -87,9 +87,9 @@ export function BackgroundSounds() {
   }
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
+    <div className="fixed right-3 sm:right-4 bottom-[calc(env(safe-area-inset-bottom)+0.75rem)] sm:bottom-4 z-50">
       {isOpen && (
-        <Card className="mb-2 p-4 w-64 border-primary/10 bg-card/95 backdrop-blur">
+        <Card className="mb-2 p-3 sm:p-4 w-[min(16rem,calc(100vw-1.5rem))] border-primary/10 bg-card/95 backdrop-blur">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <h3 className="text-sm font-semibold text-foreground">Calming Sounds</h3>
@@ -139,7 +139,7 @@ export function BackgroundSounds() {
       <Button
         onClick={() => setIsOpen(!isOpen)}
         size="icon"
-        className={`h-12 w-12 rounded-full shadow-lg ${
+        className={`h-11 w-11 sm:h-12 sm:w-12 rounded-full shadow-lg ${
           activeSound ? "bg-primary hover:bg-primary/90" : "bg-card hover:bg-card/90"
         } border border-primary/20`}
       >

@@ -21,7 +21,19 @@ type AuthContextType = {
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
-const STORAGE_KEY = "soul-sync-auth"
+const STORAGE_KEY = "pneumara-auth"
+
+function decodeGoogleCredentialPayload(credential: string) {
+  const payloadPart = credential.split(".")[1]
+  if (!payloadPart) {
+    throw new Error("Invalid Google credential payload")
+  }
+
+  // Google JWT payload uses base64url encoding, so normalize before decoding.
+  const normalized = payloadPart.replace(/-/g, "+").replace(/_/g, "/")
+  const padded = normalized.padEnd(Math.ceil(normalized.length / 4) * 4, "=")
+  return JSON.parse(atob(padded))
+}
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState<AuthUser | null>(null)
@@ -50,7 +62,6 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [user])
 
   const signInWithGoogle = useCallback(async () => {
-    setLoading(true)
     try {
       // Using Google Identity Services for sign-in
       // @ts-expect-error - google is loaded from script
@@ -72,7 +83,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           callback: (response: { credential: string }) => {
             try {
               // Decode JWT to get user info
-              const payload = JSON.parse(atob(response.credential.split(".")[1]))
+              const payload = decodeGoogleCredentialPayload(response.credential)
               const googleUser: AuthUser = {
                 id: payload.sub,
                 email: payload.email,
@@ -82,10 +93,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
               }
               setUser(googleUser)
               setLoading(false)
-              resolve()
             } catch (error) {
               setLoading(false)
-              reject(new Error("Failed to process Google Sign-In response"))
+              console.error("Failed to process Google Sign-In response", error)
             }
           },
           use_fedcm_for_prompt: true,
@@ -111,12 +121,9 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
             width: buttonWidth,
             logo_alignment: "center",
           })
-          
-          // Small delay to ensure button is fully rendered
-          setTimeout(() => {
-            setLoading(false)
-            resolve()
-          }, 50)
+
+          setLoading(false)
+          resolve()
         } else {
           setLoading(false)
           reject(new Error("Sign-in button container not found"))

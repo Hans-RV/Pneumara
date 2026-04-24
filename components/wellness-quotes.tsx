@@ -37,11 +37,11 @@ export function WellnessQuotes() {
           <Quote className="w-5 h-5 text-primary" />
           Daily Inspiration
         </CardTitle>
-        <CardDescription>A moment of reflection for your wellness</CardDescription>
+        <CardDescription className="text-sm">A moment of reflection for your wellness</CardDescription>
       </CardHeader>
       <CardContent className="space-y-4">
-        <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-6 border border-primary/20 min-h-32 flex items-center justify-center">
-          <p className="text-lg text-foreground text-center italic leading-relaxed">
+        <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-lg p-4 sm:p-6 border border-primary/20 min-h-36 sm:min-h-32 flex items-center justify-center">
+          <p className="text-base sm:text-lg text-foreground text-center italic leading-relaxed">
             "{WELLNESS_QUOTES[currentQuote]}"
           </p>
         </div>

@@ -159,10 +159,10 @@ export default function ChatPage() {
   if (showMoodSelector) {
     return (
       <AuthGuard>
-        <main className="min-h-[calc(100vh-4rem)] bg-gradient-to-b from-background to-primary/5 py-8">
+        <main className="min-h-[calc(100dvh-3.5rem)] sm:min-h-[calc(100dvh-4rem)] bg-gradient-to-b from-background to-primary/5 py-5 sm:py-8">
           <div className="max-w-2xl mx-auto px-4">
             <div className="mb-8 text-center">
-              <h1 className="text-3xl font-bold text-primary mb-2">Chat with SOUL SYNC</h1>
+              <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-2">Chat with Pneumara</h1>
               <p className="text-muted-foreground">Your compassionate AI mental health companion</p>
             </div>
             <MoodSelector onMoodSelect={handleMoodSelect} />
@@ -174,12 +174,12 @@ export default function ChatPage() {
 
   return (
     <AuthGuard>
-      <main className="min-h-[calc(100vh-4rem)] bg-gradient-to-b from-background to-primary/5 py-4">
-      <div className="max-w-2xl mx-auto px-4 h-[calc(100vh-6rem)] flex flex-col gap-3">
+      <main className="min-h-[calc(100dvh-3.5rem)] sm:min-h-[calc(100dvh-4rem)] bg-gradient-to-b from-background to-primary/5 py-3 sm:py-4">
+      <div className="max-w-2xl mx-auto px-3 sm:px-4 h-[calc(100dvh-6.5rem)] sm:h-[calc(100dvh-6rem)] flex flex-col gap-3">
         {/* Header */}
         <div className="flex-shrink-0">
-          <h1 className="text-3xl font-bold text-primary mb-2">Chat with SOUL SYNC</h1>
-          <p className="text-muted-foreground">Your compassionate AI mental health companion</p>
+          <h1 className="text-2xl sm:text-3xl font-bold text-primary mb-1.5 sm:mb-2">Chat with Pneumara</h1>
+          <p className="text-sm sm:text-base text-muted-foreground">Your compassionate AI mental health companion</p>
         </div>
 
         {/* Crisis Alert */}
@@ -188,7 +188,7 @@ export default function ChatPage() {
             <AlertTriangle className="h-4 w-4 text-destructive" />
             <AlertDescription className="text-destructive">
               <div className="font-semibold mb-2">If you're in crisis, please reach out:</div>
-              <div className="space-y-1 text-sm">
+              <div className="space-y-1 text-xs sm:text-sm">
                 {CRISIS_RESOURCES.map((resource, idx) => (
                   <div key={idx}>
                     <a
@@ -214,15 +214,15 @@ export default function ChatPage() {
         )}
 
         <Card className="flex-1 min-h-0 border-primary/10 bg-card/50 backdrop-blur overflow-hidden">
-          <div ref={scrollContainerRef} onScroll={handleScroll} className="h-full overflow-y-auto p-6 space-y-4">
+          <div ref={scrollContainerRef} onScroll={handleScroll} className="h-full overflow-y-auto p-4 sm:p-6 space-y-4">
             {messages.length === 0 ? (
               <div className="h-full flex flex-col items-center justify-center text-center space-y-4">
                 <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center">
                   <Heart className="w-8 h-8 text-primary" />
                 </div>
                 <div>
-                  <h2 className="text-xl font-semibold text-foreground mb-2">Welcome to SOUL SYNC</h2>
-                  <p className="text-muted-foreground max-w-sm">
+                  <h2 className="text-lg sm:text-xl font-semibold text-foreground mb-2">Welcome to Pneumara</h2>
+                  <p className="text-sm sm:text-base text-muted-foreground max-w-sm">
                     I'm here to listen and support you. Share what's on your mind, and let's talk about it together.
                   </p>
                 </div>
@@ -235,7 +235,7 @@ export default function ChatPage() {
                     className={`flex ${message.sender === "user" ? "justify-end" : "justify-start"}`}
                   >
                     <div
-                      className={`max-w-xs lg:max-w-md px-4 py-3 rounded-2xl ${
+                      className={`max-w-[85%] sm:max-w-md px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-2xl ${
                         message.sender === "user"
                           ? "bg-primary text-primary-foreground rounded-br-none"
                           : "bg-secondary/20 text-foreground rounded-bl-none border border-secondary/30"
@@ -277,12 +277,12 @@ export default function ChatPage() {
             onChange={(e) => setInput(e.target.value)}
             placeholder="Share your thoughts..."
             disabled={loading}
-            className="flex-1 border-primary/20 focus:border-primary bg-card/50 backdrop-blur"
+            className="flex-1 h-11 sm:h-10 border-primary/20 focus:border-primary bg-card/50 backdrop-blur"
           />
           <Button
             type="submit"
             disabled={loading || !input.trim()}
-            className="bg-primary hover:bg-primary/90 text-primary-foreground gap-2"
+            className="h-11 sm:h-10 min-w-11 sm:min-w-0 bg-primary hover:bg-primary/90 text-primary-foreground gap-2"
           >
             <Send className="w-4 h-4" />
             <span className="hidden sm:inline">Send</span>

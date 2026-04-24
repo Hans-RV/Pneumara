@@ -138,6 +138,14 @@
 }
 
 @layer base {
+  html,
+  body {
+    width: 100%;
+    min-height: 100dvh;
+    overflow-x: hidden;
+    -webkit-text-size-adjust: 100%;
+  }
+
   * {
     @apply border-border outline-ring/50;
   }

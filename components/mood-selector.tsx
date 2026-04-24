@@ -68,20 +68,20 @@ export function MoodSelector({ onMoodSelect }: MoodSelectorProps) {
   }
 
   return (
-    <Card className="p-8 border-primary/10 bg-card/50 backdrop-blur">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold text-primary mb-2">How are you feeling today?</h2>
-        <p className="text-muted-foreground">Select your current mood to help me understand you better</p>
+    <Card className="p-5 sm:p-8 border-primary/10 bg-card/50 backdrop-blur">
+      <div className="text-center mb-6 sm:mb-8">
+        <h2 className="text-xl sm:text-2xl font-bold text-primary mb-2">How are you feeling today?</h2>
+        <p className="text-sm sm:text-base text-muted-foreground">Select your current mood to help me understand you better</p>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-5 gap-3 sm:gap-4">
         {MOOD_OPTIONS.map((mood) => (
           <button
             key={mood.id}
             onClick={() => handleSelect(mood)}
-            className={`flex flex-col items-center gap-3 p-6 rounded-2xl border-2 transition-all hover:scale-105 ${
+            className={`flex flex-col items-center justify-center gap-2 sm:gap-3 p-4 sm:p-6 min-h-24 sm:min-h-28 rounded-2xl border-2 transition-all hover:scale-[1.02] ${
               selectedMood === mood.id
-                ? "border-primary bg-primary/10 scale-105"
+                ? "border-primary bg-primary/10 scale-[1.02]"
                 : "border-border bg-background hover:border-primary/50"
             }`}
           >
