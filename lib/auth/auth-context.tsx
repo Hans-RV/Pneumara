@@ -104,21 +104,21 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         // Render button instead of using One Tap prompt
         const buttonDiv = document.getElementById("google-signin-button")
         if (buttonDiv) {
-          // Clear existing content safely
-          while (buttonDiv.firstChild) {
-            buttonDiv.removeChild(buttonDiv.firstChild)
+          // Only render if not already rendered to prevent flickering
+          if (buttonDiv.children.length > 0) {
+            setLoading(false)
+            resolve()
+            return
           }
           
-          // Use a fixed width for consistent sizing
-          const buttonWidth = Math.max(220, Math.min(buttonDiv.offsetWidth || 320, 400))
-          
+          // Use a fixed width for consistent sizing and to prevent shape changes
           google.accounts.id.renderButton(buttonDiv, {
             type: "standard",
             theme: "outline",
             size: "large",
             text: "continue_with",
             shape: "pill",
-            width: buttonWidth,
+            width: 320,
             logo_alignment: "left",
           })
 
