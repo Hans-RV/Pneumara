@@ -57,7 +57,7 @@ export async function POST(request: Request) {
 
     // Generate response using Groq
     const { text } = await generateText({
-      model: groq("llama-3.3-70b-versatile"),
+      model: groq(process.env.GROQ_MODEL || 'openai/gpt-oss-120b'),
       system: SYSTEM_PROMPT,
       messages,
       temperature: 0.7,
